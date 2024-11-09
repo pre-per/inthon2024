@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:inthon2024/const/colors.dart';
+import 'package:inthon2024/provider/cardSelectionProvider.dart';
 import 'package:inthon2024/provider/naverMapProvider.dart';
 import 'package:inthon2024/provider/navigationBarProvider.dart';
+import 'package:inthon2024/provider/pageViewProvider.dart';
 import 'package:inthon2024/provider/scrollControllerProvider.dart';
 import 'package:inthon2024/screen/main_screen/campaign_screen.dart';
 import 'package:inthon2024/screen/main_screen/display_screen.dart';
@@ -24,6 +26,8 @@ void main() async {
         ChangeNotifierProvider(create: (_) => NavigationBarProvider()),
         ChangeNotifierProvider(create: (_) => NaverMapProvider()),
         ChangeNotifierProvider(create: (_) => ScrollControllerProvider()),
+        ChangeNotifierProvider(create: (_) => PageViewProvider()),
+        ChangeNotifierProvider(create: (_) => CardSelectionProvider()),
       ],
       child: MyApp(),
     ),
@@ -38,7 +42,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         splashFactory: NoSplash.splashFactory,
-        scaffoldBackgroundColor: PASTEL_GREEN_COLOR,
+        scaffoldBackgroundColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
       home: MainScreen(),
@@ -51,7 +55,7 @@ class MainScreen extends StatelessWidget {
     Homescreen(),
     CampaignScreen(),
     DisplayScreen(),
-    DonateMapScreen(),
+    ProfileScreen(),
   ];
 
   MainScreen({super.key});

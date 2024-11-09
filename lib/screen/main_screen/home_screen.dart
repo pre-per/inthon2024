@@ -1,10 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:inthon2024/component/squareCardWidget.dart';
 import 'package:inthon2024/const/fontStyle.dart';
+import 'package:inthon2024/provider/pageViewProvider.dart';
+import 'package:provider/provider.dart';
 
-class Homescreen extends StatelessWidget {
+class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
 
+  @override
+  State<Homescreen> createState() => _HomescreenState();
+}
+
+class _HomescreenState extends State<Homescreen> {
+  late PageViewProvider pageProvider;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    pageProvider = Provider.of<PageViewProvider>(context, listen: false);
+    pageProvider.startAutoSlide();
+  }
+
+  @override
+  void dispose() {
+    pageProvider.stopAutoSlide();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +44,7 @@ class Homescreen extends StatelessWidget {
                 width: 200.0,
                 height: 100.0,
                 child: Center(
-                  child: Image.asset('asset/image/logo2.png'),
+                  child: Image.asset('asset/image/logo.png'),
                 ),
               ),
             ),
@@ -44,33 +65,43 @@ class Homescreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const Divider(),
-            GestureDetector(
-              onTap: () {
-                print("인터넷 연결");
-              },
-              child: SizedBox(
-                height: 240.0,
-                width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: Text(
-                    '움직이는 위젯',
-                    style: BasicBlackFontStyle(),
-                  ),
-                ),
+            SizedBox(
+              height: 240.0,
+              width: MediaQuery.of(context).size.width,
+              child: Consumer<PageViewProvider>(
+                builder: (context, pageProvider, child) {
+                  return PageView.builder(
+                    controller: pageProvider.pageController,
+                    itemCount: pageProvider.images.length,
+                    onPageChanged: (index) {
+                      pageProvider.setCurrentPage(index);
+                    },
+                    itemBuilder: (context, index) {
+                      return Image.asset(
+                        pageProvider.images[index],
+                        fit: BoxFit.cover,
+                      );
+                    },
+                  );
+                },
               ),
             ),
-            const Divider(),
+            const Divider(height: 1),
             SizedBox(
-              height: 35.0,
+              height: 40.0,
               width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  const SizedBox(width: 13.0),
-                  Text(
-                    '내 주변의 캠페인',
-                    style: BasicBlackFontStyle(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(width: 13.0),
+                      Text(
+                        '내 주변의 캠페인',
+                        style: BasicBlackFontStyle(),
+                      ),
+                    ],
                   ),
                 ],
               ),

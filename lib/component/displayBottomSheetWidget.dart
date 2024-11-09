@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inthon2024/const/FontStyle.dart';
+import 'package:inthon2024/provider/cardSelectionProvider.dart';
 import 'package:inthon2024/provider/scrollControllerProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -20,13 +21,25 @@ class Displaybottomsheetwidget extends StatelessWidget {
         Container(
           height: 50.0,
           color: Colors.white,
-          child: ListView.builder(
+          child: ListView(
             scrollDirection: Axis.horizontal,
             controller: horizontalController,
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return ConditionalCard(title: 'card#$index');
-            },
+            children: [
+              ConditionalCard(title: '전체', index: 0),
+              ConditionalCard(title: '곧 시작', index: 1),
+              ConditionalCard(
+                title: '전시 중',
+                index: 2,
+              ),
+              ConditionalCard(
+                title: '곧 끝남',
+                index: 3,
+              ),
+              ConditionalCard(
+                title: '조건 생각해보기..',
+                index: 4,
+              ),
+            ],
           ),
         ),
         Expanded(
@@ -55,17 +68,26 @@ class Displaybottomsheetwidget extends StatelessWidget {
 
 class ConditionalCard extends StatelessWidget {
   final String title;
+  final int index;
 
   ConditionalCard({
     required this.title,
+    required this.index,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    final cardSelectionProvider = Provider.of<CardSelectionProvider>(context);
+
     return GestureDetector(
+      onTap: () {
+        cardSelectionProvider.selectCard(index);
+      },
       child: Card(
-        color: Colors.white,
+        color: cardSelectionProvider.selectedCardIndex == index
+            ? Colors.grey[300]
+            : Colors.white,
         elevation: 4.0,
         margin: const EdgeInsets.all(8.0),
         child: Container(
