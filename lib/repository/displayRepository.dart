@@ -1,18 +1,19 @@
 import 'dart:async';
-import 'package:inthon2024/model/cardModel.dart';
 import 'package:dio/dio.dart';
+
+import '../model/displaycardModel.dart';
 
 class DisplayRepository {
   final _dio = Dio();
   final _targetUrl = 'https://inthon.steadfastree.xyz/exhibitions';
-  Future<List<CardModel>> getAllDisplays() async {
+  Future<List<DisplayCardModel>> getAllDisplays() async {
     try {
       final resp = await _dio.get(_targetUrl);
       print(resp.data);
 
       if (resp.data is List) {
         return (resp.data as List)
-            .map((json) => CardModel.fromJson(json: json))
+            .map((json) => DisplayCardModel.fromJson(json: json))
             .toList();
       } else {
         throw Exception('Unexpected response format');

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:inthon2024/component/squareCardWidget.dart';
 import 'package:inthon2024/const/colors.dart';
 import 'package:inthon2024/const/fontStyle.dart';
-import 'package:inthon2024/model/cardModel.dart';
 import 'package:inthon2024/provider/campaignCardProvider.dart';
 import 'package:inthon2024/provider/displayCardProvider.dart';
 import 'package:inthon2024/provider/pageViewProvider.dart';

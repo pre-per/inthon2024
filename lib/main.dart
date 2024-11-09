@@ -27,17 +27,6 @@ void main() async {
     clientId: 'idrbavj0gb',
   );
 
-  final campaignRepository = CampaignRepository();
-  final displayRepository = DisplayRepository();
-  try {
-    List<CardModel> cards = await campaignRepository.getAllCampaigns();
-    for(var card in cards) {
-      print('${card.id} - ${card.content}');
-    }
-  } catch (e) {
-    print(e);
-  }
-
   runApp(
     MultiProvider(
       providers: [
