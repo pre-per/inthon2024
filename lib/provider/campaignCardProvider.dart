@@ -5,6 +5,7 @@ class CampaignCardProvider with ChangeNotifier {
   List<CampaignCardModel> _cards = [
     CampaignCardModel(picture: 'asset/image/banner1.png', title: '안암동 캠페인', date: '2024-11-09', content: 'Hello World'),
     CampaignCardModel(picture: 'asset/image/banner2.png', title: '종암동 캠페인', date: '2024-11-10', content: 'Hello World'),
+    CampaignCardModel(picture: 'asset/image/banner3.png', title: '보문동 캠페인', date: '2024-11-13', content: 'Hello World'),
   ];
 
   List<CampaignCardModel> get cards => _cards;

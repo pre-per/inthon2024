@@ -33,7 +33,7 @@ class SquarecardWidget extends StatelessWidget {
         margin: const EdgeInsets.all(8.0),
         child: SizedBox(
             height: 200.0,
-            width: 200.0,
+            width: 180.0,
             child: Center(
               child: Column(
                 children: [

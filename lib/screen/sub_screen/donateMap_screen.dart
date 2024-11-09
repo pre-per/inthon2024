@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:inthon2024/component/donateMapWidget.dart';
 import 'package:inthon2024/const/fontStyle.dart';
-
+import 'package:provider/provider.dart';
+import 'package:inthon2024/provider/naverMapProvider.dart';
 import '../../const/colors.dart';
 
 class DonateMapScreen extends StatelessWidget {
@@ -9,6 +10,7 @@ class DonateMapScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mapProvider = Provider.of<NaverMapProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -31,7 +33,7 @@ class DonateMapScreen extends StatelessWidget {
                   height: 100.0,
                   child: Center(
                     child: Text(
-                      '장소장소장소',
+                      mapProvider.selectedMarker.info.id,
                       style: BasicBlackFontStyle(),
                     ),
                   ),

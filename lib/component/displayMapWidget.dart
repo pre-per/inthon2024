@@ -27,32 +27,24 @@ Future<Position?> checkPermissionAndGetLocation() async {
 }
 
 class DisplayMapWidget extends StatelessWidget {
-  final NMarker marker = NMarker(
-    id: 'GYM',
-    position: const NLatLng(37.5855175, 127.0305901),
-    caption: const NOverlayCaption(text: '에너메카 안암점'),
-  );
-
-  final infoWindow = NInfoWindow.onMap(
-    id: 'GYM',
-    text: "HelloWorld",
-    position: const NLatLng(37.5855175, 127.0305901),
-  );
-
-  DisplayMapWidget({super.key});
+  const DisplayMapWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     final mapController = Provider.of<NaverMapProvider>(context, listen: false);
 
-    marker.setOnTapListener((NMarker marker) {
-      print("마커가 터치되었습니다. id:${marker.info.id}");
-      mapController.controller.addOverlay(infoWindow);
-    });
+    for (var marker in mapController.display_markers) {
+      marker.setOnTapListener((NOverlay<void> clickedOverlay) {
+        if (clickedOverlay is NMarker) {
+          print('클릭된 마커: ${clickedOverlay.info.id}');
+          mapController.setSelectedMarker(clickedOverlay);
+        }
+      });
+    }
 
     return Container(
       width: 425.0,
-      height: 500.0,
+      height: 510.0,
       decoration: BoxDecoration(
         color: Colors.green[100],
       ),
@@ -77,7 +69,7 @@ class DisplayMapWidget extends StatelessWidget {
               ),
               onMapReady: (controller) {
                 mapController.setController(controller);
-                mapController.controller.addOverlay(marker);
+                mapController.controller.addOverlayAll(mapController.display_markers);
               },
             );
           }
