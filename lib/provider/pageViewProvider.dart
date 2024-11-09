@@ -12,6 +12,9 @@ class PageViewProvider with ChangeNotifier {
     'asset/image/banner3.png',
     'asset/image/banner4.png',
     'asset/image/banner5.png',
+    'asset/image/banner6.png',
+    'asset/image/banner7.png',
+    'asset/image/banner8.png',
   ];
 
   PageViewProvider() {
@@ -23,7 +26,7 @@ class PageViewProvider with ChangeNotifier {
 
   void startAutoSlide() {
     if (_timer != null && _timer!.isActive) return;
-    _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
       if (currentPage < images.length - 1) {
         currentPage++;
       } else {

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:inthon2024/component/squareCardWidget.dart';
+import 'package:inthon2024/const/colors.dart';
 import 'package:inthon2024/const/fontStyle.dart';
+import 'package:inthon2024/model/campaignCardModel.dart';
+import 'package:inthon2024/provider/campaignCardProvider.dart';
 import 'package:inthon2024/provider/pageViewProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -28,6 +31,7 @@ class _HomescreenState extends State<Homescreen> {
   }
   @override
   Widget build(BuildContext context) {
+    final campaignCardProvider = Provider.of<CampaignCardProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -36,27 +40,21 @@ class _HomescreenState extends State<Homescreen> {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => Homescreen()),
-                );
+                Navigator.of(context).popUntil((route) => route.isFirst);
               },
               child: SizedBox(
-                width: 200.0,
-                height: 100.0,
+                width: 180.0,
+                height: 120.0,
                 child: Center(
                   child: Image.asset('asset/image/logo.png'),
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               width: 100.0,
               height: 50.0,
-              color: Colors.yellow,
               child: Center(
-                child: Text(
-                  'credit',
-                  style: BasicBlackFontStyle(),
-                ),
+                child: Image.asset('asset/image/credit.png'),
               ),
             ),
           ],
@@ -108,13 +106,12 @@ class _HomescreenState extends State<Homescreen> {
             ),
             SizedBox(
               height: 210.0,
-              child: ListView(
+              child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                children: [
-                  SquarecardWidget(),
-                  SquarecardWidget(),
-                  SquarecardWidget(),
-                ],
+                itemCount: campaignCardProvider.cards.length,
+                itemBuilder: (context, index) {
+                  return SquarecardWidget(cardData: campaignCardProvider.cards[index]);
+                },
               ),
             ),
             const Divider(),
@@ -134,13 +131,12 @@ class _HomescreenState extends State<Homescreen> {
             ),
             SizedBox(
               height: 210.0,
-              child: ListView(
+              child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                children: [
-                  SquarecardWidget(),
-                  SquarecardWidget(),
-                  SquarecardWidget(),
-                ],
+                itemCount: campaignCardProvider.cards.length,
+                itemBuilder: (context, index) {
+                  return SquarecardWidget(cardData: campaignCardProvider.cards[index]);
+                },
               ),
             ),
           ],

@@ -42,6 +42,7 @@ class Displaybottomsheetwidget extends StatelessWidget {
             ],
           ),
         ),
+        const Divider(height: 1),
         Expanded(
           child: Container(
             height: 200.0,
@@ -51,9 +52,20 @@ class Displaybottomsheetwidget extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return ListTile(
+                  leading: const SizedBox(
+                    height: 100.0,
+                    width: 100.0,
+                    child: Center(
+                      child: Text('Picture'),
+                    ),
+                  ),
                   title: Text(
                     'card index#$index',
                     style: BasicBlackFontStyle(),
+                  ),
+                  subtitle: Text(
+                    'card index#$index',
+                    style: BasicBlackFontStyle().copyWith(fontSize: 13.0),
                   ),
                 );
               },
@@ -88,7 +100,7 @@ class ConditionalCard extends StatelessWidget {
         color: cardSelectionProvider.selectedCardIndex == index
             ? Colors.grey[300]
             : Colors.white,
-        elevation: 4.0,
+        elevation: 3.0,
         margin: const EdgeInsets.all(8.0),
         child: Container(
           decoration: BoxDecoration(
@@ -100,9 +112,9 @@ class ConditionalCard extends StatelessWidget {
                   const EdgeInsets.symmetric(vertical: 6.0, horizontal: 10.0),
               child: Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w600,
                   fontSize: 15.0,
                 ),
               ),

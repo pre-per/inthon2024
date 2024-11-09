@@ -52,7 +52,7 @@ class DisplayMapWidget extends StatelessWidget {
 
     return Container(
       width: 425.0,
-      height: 550.0,
+      height: 500.0,
       decoration: BoxDecoration(
         color: Colors.green[100],
       ),

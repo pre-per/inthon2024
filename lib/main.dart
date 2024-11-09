@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:inthon2024/const/colors.dart';
+import 'package:inthon2024/provider/campaignCardProvider.dart';
 import 'package:inthon2024/provider/cardSelectionProvider.dart';
 import 'package:inthon2024/provider/naverMapProvider.dart';
 import 'package:inthon2024/provider/navigationBarProvider.dart';
@@ -28,6 +29,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => ScrollControllerProvider()),
         ChangeNotifierProvider(create: (_) => PageViewProvider()),
         ChangeNotifierProvider(create: (_) => CardSelectionProvider()),
+        ChangeNotifierProvider(create: (_) => CampaignCardProvider()),
       ],
       child: MyApp(),
     ),
