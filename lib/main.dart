@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:inthon2024/const/colors.dart';
+import 'package:inthon2024/model/cardModel.dart';
 import 'package:inthon2024/provider/campaignCardProvider.dart';
 import 'package:inthon2024/provider/cardSelectionProvider.dart';
+import 'package:inthon2024/provider/displayCardProvider.dart';
 import 'package:inthon2024/provider/naverMapProvider.dart';
 import 'package:inthon2024/provider/navigationBarProvider.dart';
 import 'package:inthon2024/provider/pageViewProvider.dart';
 import 'package:inthon2024/provider/scrollControllerProvider.dart';
+import 'package:inthon2024/repository/campaignRepository.dart';
+import 'package:inthon2024/repository/displayRepository.dart';
 import 'package:inthon2024/screen/main_screen/campaign_screen.dart';
 import 'package:inthon2024/screen/main_screen/display_screen.dart';
 import 'package:inthon2024/screen/main_screen/home_screen.dart';
@@ -14,12 +18,25 @@ import 'package:inthon2024/screen/main_screen/profile_screen.dart';
 import 'package:inthon2024/screen/sub_screen/donateMap_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'model/userModel.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await NaverMapSdk.instance.initialize(
     clientId: 'idrbavj0gb',
   );
+
+  final campaignRepository = CampaignRepository();
+  final displayRepository = DisplayRepository();
+  try {
+    List<CardModel> cards = await campaignRepository.getAllCampaigns();
+    for(var card in cards) {
+      print('${card.id} - ${card.content}');
+    }
+  } catch (e) {
+    print(e);
+  }
 
   runApp(
     MultiProvider(
@@ -30,6 +47,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => PageViewProvider()),
         ChangeNotifierProvider(create: (_) => CardSelectionProvider()),
         ChangeNotifierProvider(create: (_) => CampaignCardProvider()),
+        ChangeNotifierProvider(create: (_) => DisplayCardProvider()),
       ],
       child: MyApp(),
     ),

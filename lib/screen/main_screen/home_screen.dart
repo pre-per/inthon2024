@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:inthon2024/component/squareCardWidget.dart';
 import 'package:inthon2024/const/colors.dart';
 import 'package:inthon2024/const/fontStyle.dart';
-import 'package:inthon2024/model/campaignCardModel.dart';
+import 'package:inthon2024/model/cardModel.dart';
 import 'package:inthon2024/provider/campaignCardProvider.dart';
+import 'package:inthon2024/provider/displayCardProvider.dart';
 import 'package:inthon2024/provider/pageViewProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,19 @@ class Homescreen extends StatefulWidget {
 
 class _HomescreenState extends State<Homescreen> {
   late PageViewProvider pageProvider;
+  late CampaignCardProvider cardProvider;
+  late DisplayCardProvider displayProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      cardProvider = Provider.of<CampaignCardProvider>(context, listen: false);
+      displayProvider = Provider.of<DisplayCardProvider>(context, listen: false);
+      cardProvider.fetchCampaigns();
+      displayProvider.fetchDisplays();
+    });
+  }
 
   @override
   void didChangeDependencies() {

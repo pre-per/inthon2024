@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:inthon2024/const/FontStyle.dart';
 import 'package:inthon2024/const/colors.dart';
-import 'package:inthon2024/model/campaignCardModel.dart';
+import 'package:inthon2024/model/cardModel.dart';
 import 'package:inthon2024/screen/sub_screen/DonateMap_screen.dart';
 
 class CampaigninfoScreen extends StatelessWidget {
-  final CampaignCardModel cardData;
+  final CardModel cardData;
 
   const CampaigninfoScreen({required this.cardData, super.key});
 
@@ -16,6 +16,8 @@ class CampaigninfoScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         title: Text(
           cardData.title,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
           style: BasicBlackFontStyle(),
         ),
       ),

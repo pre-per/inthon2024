@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:inthon2024/const/FontStyle.dart';
-import 'package:inthon2024/model/campaignCardModel.dart';
+import 'package:inthon2024/model/cardModel.dart';
 import 'package:inthon2024/provider/campaignCardProvider.dart';
 import 'package:inthon2024/screen/sub_screen/campaignInfo_screen.dart';
 import 'package:provider/provider.dart';
 
 class SquarecardWidget extends StatelessWidget {
-  final CampaignCardModel cardData;
+  final CardModel cardData;
 
   const SquarecardWidget({required this.cardData, super.key});
 
@@ -46,23 +46,17 @@ class SquarecardWidget extends StatelessWidget {
                     height: 1,
                   ),
                   const SizedBox(height: 10.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        '  ${cardData.title}',
-                        style: BasicBlackFontStyle(),
-                      )
-                    ],
+                  Text(
+                    '  ${cardData.title}',
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: BasicBlackFontStyle().copyWith(fontSize: 17.0),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        '   ${cardData.date}',
-                        style: BasicBlackFontStyle().copyWith(fontSize: 15.0),
-                      )
-                    ],
+                  Text(
+                    '   ${cardData.date}',
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: BasicBlackFontStyle().copyWith(fontSize: 13.0),
                   ),
                 ],
               ),

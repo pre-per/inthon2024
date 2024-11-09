@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:inthon2024/const/FontStyle.dart';
+import 'package:inthon2024/model/cardModel.dart';
 import 'package:inthon2024/provider/cardSelectionProvider.dart';
+import 'package:inthon2024/provider/displayCardProvider.dart';
 import 'package:inthon2024/provider/scrollControllerProvider.dart';
 import 'package:provider/provider.dart';
 
 class Displaybottomsheetwidget extends StatelessWidget {
+  final List<CardModel> cardData;
   final ScrollController horizontalController;
   final ScrollController verticalController;
+  final bool isLoading;
 
   Displaybottomsheetwidget({
+    required this.cardData,
     required this.horizontalController,
     required this.verticalController,
+    required this.isLoading,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    if (cardData.isEmpty) {
+      return Center(child: Text("전시 정보를 불러올 수 없습니다."));
+    }
+
     return Column(
       children: [
         Container(
@@ -26,19 +36,10 @@ class Displaybottomsheetwidget extends StatelessWidget {
             controller: horizontalController,
             children: [
               ConditionalCard(title: '전체', index: 0),
-              ConditionalCard(title: '곧 시작', index: 1),
-              ConditionalCard(
-                title: '전시 중',
-                index: 2,
-              ),
-              ConditionalCard(
-                title: '곧 끝남',
-                index: 3,
-              ),
-              ConditionalCard(
-                title: '조건 생각해보기..',
-                index: 4,
-              ),
+              ConditionalCard(title: '예정됨', index: 1),
+              ConditionalCard(title: '전시 중', index: 2),
+              ConditionalCard(title: '종료됨', index: 3),
+              ConditionalCard(title: '추가 조건', index: 4),
             ],
           ),
         ),
@@ -49,22 +50,25 @@ class Displaybottomsheetwidget extends StatelessWidget {
             color: Colors.white,
             child: ListView.separated(
               controller: verticalController,
-              itemCount: 10,
+              itemCount: cardData.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  leading: const SizedBox(
+                  leading: SizedBox(
                     height: 100.0,
                     width: 100.0,
                     child: Center(
-                      child: Text('Picture'),
+                      child: Image.asset(
+                        cardData[index].picture,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   title: Text(
-                    'card index#$index',
+                    cardData[index].title,
                     style: BasicBlackFontStyle(),
                   ),
                   subtitle: Text(
-                    'card index#$index',
+                    cardData[index].date,
                     style: BasicBlackFontStyle().copyWith(fontSize: 13.0),
                   ),
                 );
@@ -109,7 +113,7 @@ class ConditionalCard extends StatelessWidget {
           child: Center(
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 6.0, horizontal: 10.0),
+                  const EdgeInsets.symmetric(vertical: 6.0, horizontal: 15.0),
               child: Text(
                 title,
                 style: const TextStyle(

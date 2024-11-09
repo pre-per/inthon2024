@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:inthon2024/const/FontStyle.dart';
-import 'package:inthon2024/model/campaignCardModel.dart';
+import 'package:inthon2024/model/cardModel.dart';
 import 'package:inthon2024/screen/sub_screen/campaignInfo_screen.dart';
 
 class CampaignCard extends StatelessWidget {
-  final CampaignCardModel cardData;
+  final CardModel cardData;
 
   CampaignCard({required this.cardData, super.key});
 
@@ -45,19 +45,26 @@ class CampaignCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 10.0),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      cardData.title,
-                      style: BasicBlackFontStyle(),
-                    ),
-                    Text(
-                      cardData.date,
-                      style: BasicBlackFontStyle().copyWith(fontSize: 15.0),
-                    ),
-                  ],
+                SizedBox(
+                  width: 230.0,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        cardData.title,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: BasicBlackFontStyle(),
+                      ),
+                      Text(
+                        cardData.date,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: BasicBlackFontStyle().copyWith(fontSize: 15.0),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),

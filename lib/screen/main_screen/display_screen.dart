@@ -2,11 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:inthon2024/component/displayMapWidget.dart';
 import 'package:inthon2024/component/displayBottomSheetWidget.dart';
 import 'package:inthon2024/const/fontStyle.dart';
+import 'package:inthon2024/provider/displayCardProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:inthon2024/provider/scrollControllerProvider.dart';
 
-class DisplayScreen extends StatelessWidget {
+class DisplayScreen extends StatefulWidget {
   const DisplayScreen({super.key});
+
+  @override
+  State<DisplayScreen> createState() => _DisplayScreenState();
+}
+
+class _DisplayScreenState extends State<DisplayScreen> {
+  late DisplayCardProvider displayCardProvider;
+  @override
+  void initState() {
+    displayCardProvider = Provider.of<DisplayCardProvider>(context, listen: false);
+    displayCardProvider.fetchDisplays();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +46,10 @@ class DisplayScreen extends StatelessWidget {
               maxChildSize: 0.8,
               builder: (context, controller) {
                 return Displaybottomsheetwidget(
+                  cardData: displayCardProvider.cards,
                   verticalController: controller,
                   horizontalController: horizontalController,
+                  isLoading: displayCardProvider.isLoading,
                 );
               },
             ),

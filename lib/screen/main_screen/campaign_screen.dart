@@ -5,8 +5,21 @@ import 'package:inthon2024/provider/campaignCardProvider.dart';
 import 'package:inthon2024/screen/sub_screen/DonateMap_screen.dart';
 import 'package:provider/provider.dart';
 
-class CampaignScreen extends StatelessWidget {
+class CampaignScreen extends StatefulWidget {
   const CampaignScreen({super.key});
+
+  @override
+  State<CampaignScreen> createState() => _CampaignScreenState();
+}
+
+class _CampaignScreenState extends State<CampaignScreen> {
+  late CampaignCardProvider cardProvider;
+  @override
+  void initState() {
+    cardProvider = Provider.of<CampaignCardProvider>(context, listen: false);
+    cardProvider.fetchCampaigns();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
