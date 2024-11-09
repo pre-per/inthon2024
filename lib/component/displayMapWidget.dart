@@ -33,15 +33,6 @@ class DisplayMapWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final mapController = Provider.of<NaverMapProvider>(context, listen: false);
 
-    for (var marker in mapController.display_markers) {
-      marker.setOnTapListener((NOverlay<void> clickedOverlay) {
-        if (clickedOverlay is NMarker) {
-          print('클릭된 마커: ${clickedOverlay.info.id}');
-          mapController.setSelectedMarker(clickedOverlay);
-        }
-      });
-    }
-
     return Container(
       width: 425.0,
       height: 510.0,
@@ -69,6 +60,14 @@ class DisplayMapWidget extends StatelessWidget {
               ),
               onMapReady: (controller) {
                 mapController.setController(controller);
+                for (var marker in mapController.display_markers) {
+                  if (marker is NMarker) {
+                    marker.setOnTapListener((NMarker marker) {
+                      print('클릭된 마커: ${marker.info.id}');
+                      mapController.setSelectedMarker(marker);
+                    });
+                  }
+                }
                 mapController.controller.addOverlayAll(mapController.display_markers);
               },
             );

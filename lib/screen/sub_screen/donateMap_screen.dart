@@ -65,6 +65,88 @@ class DonateMapScreen extends StatelessWidget {
                 ),
               ),
             ),
+            onTap: () async {
+              final result = await showDialog(
+                context: context,
+                builder: (_) {
+                  return AlertDialog(
+                    title: const Text(
+                      '기부하기',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    content: Text(
+                      '${mapProvider.selectedMarker.info.id}에서 기부하시겠습니까?',
+                      style: const TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      softWrap: true,
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(false);
+                        },
+                        child: const Text(
+                          '취소',
+                          style: TextStyle(
+                            color: PRIMARY_COLOR_DENSE,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                        },
+                        child: const Text(
+                          '확인',
+                          style: TextStyle(
+                            color: PRIMARY_COLOR_DENSE,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+              if (result == true) {
+                mapProvider.makeReservation();
+                await showDialog(
+                  context: context,
+                  builder: (_) {
+                    return AlertDialog(
+                      title: const Text(
+                        '기부 예약이 완료되었습니다',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(true);
+                          },
+                          child: const Text(
+                            '확인',
+                            style: TextStyle(
+                              color: PRIMARY_COLOR_DENSE,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                );
+                Navigator.of(context).popUntil((route) => route.isFirst);
+              }
+            },
           ),
         ),
       ),
