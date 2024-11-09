@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:inthon2024/provider/naverMapProvider.dart';
 import 'package:inthon2024/provider/navigationBarProvider.dart';
+import 'package:inthon2024/provider/scrollControllerProvider.dart';
 import 'package:inthon2024/screen/main_screen/campaign_screen.dart';
 import 'package:inthon2024/screen/main_screen/display_screen.dart';
 import 'package:inthon2024/screen/main_screen/home_screen.dart';
@@ -21,6 +22,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => NavigationBarProvider()),
         ChangeNotifierProvider(create: (_) => NaverMapProvider()),
+        ChangeNotifierProvider(create: (_) => ScrollControllerProvider()),
       ],
       child: MyApp(),
     ),
