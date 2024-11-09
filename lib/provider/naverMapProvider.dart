@@ -9,6 +9,7 @@ class NaverMapProvider with ChangeNotifier {
     position: const NLatLng(37.5855175, 127.0305901),
     caption: const NOverlayCaption(text: '에너메카 안암점'),
   );
+  String _reservedId = '';
   late NaverMapController _controller;
 
   NaverMapController get controller => _controller;
@@ -21,6 +22,11 @@ class NaverMapProvider with ChangeNotifier {
 
   void setSelectedMarker(NMarker marker) {
     _selectedMarker = marker;
+    notifyListeners();
+  }
+
+  void makeReservation() {
+    _reservedId = selectedMarker.info.id;
     notifyListeners();
   }
 }

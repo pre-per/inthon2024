@@ -65,9 +65,6 @@ class DonateMapScreen extends StatelessWidget {
                 ),
               ),
             ),
-            onTap: () {
-              Navigator.of(context).popUntil((route) => route.isFirst);
-            },
           ),
         ),
       ),
