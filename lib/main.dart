@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         splashFactory: NoSplash.splashFactory,
+        scaffoldBackgroundColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
       home: MainScreen(),
@@ -49,7 +50,6 @@ class MainScreen extends StatelessWidget {
     Homescreen(),
     CampaignScreen(),
     DisplayScreen(),
-    // ProfileScreen(),
     DonateMapScreen(),
   ];
 
@@ -61,6 +61,7 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       body: _screens[btProvider.selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
         currentIndex: btProvider.selectedIndex,
         onTap: btProvider.updateIndex,
@@ -69,7 +70,7 @@ class MainScreen extends StatelessWidget {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
           BottomNavigationBarItem(icon: Icon(Icons.campaign), label: '캠페인'),
-          BottomNavigationBarItem(icon: Icon(Icons.people), label: '전시'),
+          BottomNavigationBarItem(icon: Icon(Icons.image), label: '전시'),
           BottomNavigationBarItem(icon: Icon(Icons.person_2_rounded), label: '프로필'),
         ],
       ),

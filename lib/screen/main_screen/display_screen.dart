@@ -10,11 +10,12 @@ class DisplayScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final verticalController =
+    final horizontalController =
         Provider.of<ScrollControllerProvider>(context).verticalScrollController;
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text(
           '근처 전시 장소를 찾아봐요!',
           style: BasicBlackFontStyle(),
@@ -24,17 +25,15 @@ class DisplayScreen extends StatelessWidget {
       body: Center(
         child: Stack(
           children: [
-            const Positioned.fill(
-              child: DisplayMapWidget(),
-            ),
+            DisplayMapWidget(),
             DraggableScrollableSheet(
-              initialChildSize: 0.4,
+              initialChildSize: 0.3,
               minChildSize: 0.3,
               maxChildSize: 0.8,
               builder: (context, controller) {
                 return Displaybottomsheetwidget(
-                  verticalController: verticalController,
-                  horizontalController: controller,
+                  verticalController: controller,
+                  horizontalController: horizontalController,
                 );
               },
             ),

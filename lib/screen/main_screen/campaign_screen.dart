@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inthon2024/const/fontStyle.dart';
+import 'package:inthon2024/screen/sub_screen/DonateMap_screen.dart';
 
 class CampaignScreen extends StatelessWidget {
   const CampaignScreen({super.key});
@@ -8,9 +9,25 @@ class CampaignScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          '안녕하세요!',
-          style: BasicBlackFontStyle(),
+        backgroundColor: Colors.white,
+        title: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '안녕하세요!',
+                style: BasicBlackFontStyle(),
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => DonateMapScreen()),
+                  );
+                },
+                icon: Icon(Icons.add),
+              ),
+            ],
+          ),
         ),
       ),
       body: Center(

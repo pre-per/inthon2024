@@ -4,12 +4,12 @@ import 'package:inthon2024/provider/scrollControllerProvider.dart';
 import 'package:provider/provider.dart';
 
 class Displaybottomsheetwidget extends StatelessWidget {
-  final ScrollController verticalController;
   final ScrollController horizontalController;
+  final ScrollController verticalController;
 
   Displaybottomsheetwidget({
-    required this.verticalController,
     required this.horizontalController,
+    required this.verticalController,
     super.key,
   });
 
@@ -22,7 +22,7 @@ class Displaybottomsheetwidget extends StatelessWidget {
           color: Colors.white,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            controller: verticalController,
+            controller: horizontalController,
             itemCount: 10,
             itemBuilder: (context, index) {
               return ConditionalCard(title: 'card#$index');
@@ -34,7 +34,7 @@ class Displaybottomsheetwidget extends StatelessWidget {
             height: 200.0,
             color: Colors.white,
             child: ListView.separated(
-              controller: horizontalController,
+              controller: verticalController,
               itemCount: 10,
               itemBuilder: (context, index) {
                 return ListTile(
