@@ -15,7 +15,7 @@ class CampaignScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '안녕하세요!',
+                '캠페인에 함께 참여해요!',
                 style: BasicBlackFontStyle(),
               ),
               IconButton(

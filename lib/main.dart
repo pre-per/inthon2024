@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
+import 'package:inthon2024/const/colors.dart';
 import 'package:inthon2024/provider/naverMapProvider.dart';
 import 'package:inthon2024/provider/navigationBarProvider.dart';
 import 'package:inthon2024/provider/scrollControllerProvider.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         splashFactory: NoSplash.splashFactory,
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: PASTEL_GREEN_COLOR,
       ),
       debugShowCheckedModeBanner: false,
       home: MainScreen(),
