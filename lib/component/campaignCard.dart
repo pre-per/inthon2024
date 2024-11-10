@@ -40,13 +40,12 @@ class CampaignCard extends StatelessWidget {
                     height: 100.0,
                     width: 140.0,
                     child: Center(
-                      child: Image.asset(cardData.picture, fit: BoxFit.cover),
+                      child: Image.network(cardData.picture, fit: BoxFit.cover),
                     ),
                   ),
                 ),
                 const SizedBox(width: 10.0),
-                SizedBox(
-                  width: 230.0,
+                Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,

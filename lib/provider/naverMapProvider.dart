@@ -33,7 +33,7 @@ class NaverMapProvider with ChangeNotifier {
 
 final Set<NAddableOverlay> dmarkers = {
   NMarker(
-    id: 'GYM',
+    id: '에너메카 안암점',
     position: const NLatLng(37.5855175, 127.0305901),
     caption: const NOverlayCaption(text: '에너메카 안암점'),
   ),
@@ -66,7 +66,7 @@ final Set<NAddableOverlay> dmarkers = {
 
 final Set<NAddableOverlay> tmarkers = {
   NMarker(
-    id: 'GYM',
+    id: '에너메카 안암점',
     position: const NLatLng(37.5855175, 127.0305901),
     caption: const NOverlayCaption(text: '에너메카 안암점'),
   ),

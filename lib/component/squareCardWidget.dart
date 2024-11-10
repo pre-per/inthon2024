@@ -40,7 +40,7 @@ class SquarecardWidget extends StatelessWidget {
                   SizedBox(
                     height: 100.0,
                     width: 200.0,
-                    child: Image.asset(cardData.picture, fit: BoxFit.cover),
+                    child: Image.network(cardData.picture, fit: BoxFit.cover),
                   ),
                   const Divider(
                     height: 1,

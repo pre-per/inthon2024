@@ -17,7 +17,7 @@ class DisplayCardModel {
 
   DisplayCardModel.fromJson({required Map<String, dynamic> json})
       : id = json['id'],
-        picture = json['picture'] ?? 'asset/image/banner1.png',
+        picture = json['imageUrl'] ?? 'asset/image/banner1.png',
         title = json['title'],
         date = json['endDate'],
         content = json['description'],

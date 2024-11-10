@@ -29,7 +29,7 @@ class CampaigninfoScreen extends StatelessWidget {
             height: 250.0,
             width: MediaQuery.of(context).size.width,
             child: Center(
-              child: Image.asset(cardData.picture, fit: BoxFit.cover),
+              child: Image.network(cardData.picture, fit: BoxFit.cover),
             ),
           ),
           const Divider(height: 0),
@@ -49,10 +49,16 @@ class CampaigninfoScreen extends StatelessWidget {
             height: 300.0,
             width: MediaQuery.of(context).size.width,
             child: Center(
-              child: Text(
-                '재활용품 종류별 수급률이 들어갑니다',
-                style: BasicBlackFontStyle(),
-              ),
+              child: Column(
+                children: [
+                  Image.asset('asset/image/battery.png'),
+                  Image.asset('asset/image/can.png'),
+                  Image.asset('asset/image/cloth.png'),
+                  Image.asset('asset/image/glass.png'),
+                  Image.asset('asset/image/plastic.png'),
+                  Image.asset('asset/image/etc.png'),
+                ],
+              )
             ),
           ),
           const Divider(height: 1),
